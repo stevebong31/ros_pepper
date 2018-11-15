@@ -5,9 +5,9 @@
   <arg name="set_odom_frame" default="odom"/>
   <arg name="set_map_frame"  default="map"/>
   <arg name="range_max" value="3.0" />
-
+     <!-- depthimage_to_laserscan -->
   <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
-    <remap from="camera_info" to="/pepper_robot/camera/front/camera/camera_info" />
+    <remap from="camera_info" to="/pepper_robot/camera/depth/camera/camera_info" />
     <remap from="image" to="/pepper_robot/camera/depth/camera/image_raw" />
     <param name="output_frame_id" value="CameraDepth_frame" />
     <param name="scan_height" value="10" />
