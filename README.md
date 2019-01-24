@@ -24,3 +24,4 @@ Use ssd_mobilinet_v1_coco_11_06_2017 as the default model.
 
 
 ## 4. object_localization_pepper.launch
+This is a file for object detection using Pepper's front camera.
