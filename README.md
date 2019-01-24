@@ -19,4 +19,8 @@ This is a file for recognition of a marker using Pepper's front camera.  This us
 ## 3. object_detection_pepper.launch
 This is a file for object detection using Pepper's front camera. This used the ROS package made with the Tensorflow object detection API.\
 Use ssd_mobilinet_v1_coco_11_06_2017 as the default model.
+
 (https://github.com/osrf/tensorflow_object_detector)
+
+
+## 4. object_localization_pepper.launch
