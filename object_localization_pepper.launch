@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="rgb_camera_info" value="/pepper_robot/naoqi_driver/camera/front/camera_info"/>
+    <arg name="rgb_rimg_ect" value="/pepper_robot/naoqi_driver/camera/front/image_raw"/>  <!--Rectified color image-->
+    <arg name="depReg_imgrect" value="/pepper_robot/naoqi_driver/camera/depth/image_raw"/>  <!--Rectified depth image-->
+    <arg name="out_cloud" value="camera/pepper_robot/naoqi_driver/camera/depth/points"/>
+
+    <node pkg="nodelet" type="nodelet" name="standalone_nodelet" args="manager" output="screen"/>
+
+    <!-- Construct point cloud of the rgb and depth topics -->
+    <node pkg="nodelet" type="nodelet" name="points_xyzrgb" args="load depth_image_proc/point_cloud_xyzrgb standalone_nodelet --no-bond">
+        <remap from="rgb/camera_info" to="$(arg rgb_camera_info)" />  
+        <remap from="rgb/image_rect_color" to="$(arg rgb_rimg_ect)"/>  
+        <remap from="depth_registered/image_rect" to="$(arg depReg_imgrect)"/>  
+        <remap from="depth_registered/points" to="$(arg out_cloud)"/>
+    </node>
+
+    <arg name="detector_type" value="ssd" />
+    <node name="dodo_detector_ros" pkg="dodo_detector_ros" type="detector.py" output="screen">
+        <rosparam command="load" file="$(find dodo_detector_ros)/config/main_config.yaml"/>
+    </node>
+</launch>
